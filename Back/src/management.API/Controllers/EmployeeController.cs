@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using management.API.Data;
 using management.API.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -12,33 +13,22 @@ namespace management.API.Controllers
     [Route("api/[controller]")]
     public class EmployeeController : ControllerBase
     {
-        public IEnumerable<Employee> _employee = new Employee[]
+        private readonly DataContext _context;
+        public EmployeeController(DataContext context)
         {
-            new Employee() {
-                Id = 1,
-                Nome = "Lucas",
-                RG = 379782364
-            },
-            new Employee() {
-                Id = 1,
-                Nome = "Lucas",
-                RG = 379782364
-            }
-        };
-        public EmployeeController()
-        {
+            this._context = context;
         }
 
         [HttpGet]
         public IEnumerable<Employee> Get()
         {
-            return _employee;
+            return _context.Funcionarios;
         }
 
         [HttpGet("{id}")]
         public IEnumerable<Employee> GetId(int id)
         {
-            return _employee.Where(employee => employee.Id == id);
+            return _context.Funcionarios.Where(employee => employee.Id == id);
         }
 
         [HttpPost]
@@ -48,7 +38,8 @@ namespace management.API.Controllers
         }
 
         [HttpPut("{id}")]
-        public string Put(int id){
+        public string Put(int id)
+        {
             return $"Put = {id}";
         }
 

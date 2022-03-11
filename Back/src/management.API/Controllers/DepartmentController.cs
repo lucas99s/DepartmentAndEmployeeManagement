@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using management.API.Data;
+using management.API.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -11,15 +13,23 @@ namespace management.API.Controllers
     [Route("api/[controller]")]
     public class DepartmentController : ControllerBase
     {
+        private readonly DataContext _context;
 
-        public DepartmentController()
+        public DepartmentController(DataContext context)
         {
+            this._context = context;
         }
 
         [HttpGet]
-        public string Get()
+        public IEnumerable<Department> GetAll()
         {
-            return "Get";
+            return _context.Departamentos;
+        }
+
+        [HttpGet("{id}")]
+        public IEnumerable<Department> Get(int id)
+        {
+            return _context.Departamentos.Where(department => department.IdDepartamento == id);
         }
 
         [HttpPost]
@@ -29,7 +39,8 @@ namespace management.API.Controllers
         }
 
         [HttpPut("{id}")]
-        public string Put(int id){
+        public string Put(int id)
+        {
             return $"Put = {id}";
         }
 
