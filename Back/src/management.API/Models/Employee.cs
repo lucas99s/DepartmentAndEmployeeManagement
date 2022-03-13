@@ -3,14 +3,15 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace management.API.Models
 {
-    public class Employee
+    public class Funcionario
     {
         [Key]
         public int Id { get; set; }
         public string Nome { get; set; }
         public string ImagemURL { get; set; }
         public int RG { get; set; }
-        public Department Department { get; set; }
-        public int IdDepartamento { get; set; }
+        public int? IdDepartamento { get; set; }
+        [ForeignKey("IdDepartamento")]
+        public Departamento Departamento { get; set; }
     }
 }

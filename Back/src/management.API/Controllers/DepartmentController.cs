@@ -21,15 +21,15 @@ namespace management.API.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<Department> GetAll()
+        public IEnumerable<Departamento> GetAll()
         {
             return _context.Departamentos;
         }
 
         [HttpGet("{id}")]
-        public IEnumerable<Department> Get(int id)
+        public IEnumerable<Departamento> Get(int id)
         {
-            return _context.Departamentos.Where(department => department.IdDepartamento == id);
+            return _context.Departamentos.Where(department => department.Id == id);
         }
 
         [HttpPost]

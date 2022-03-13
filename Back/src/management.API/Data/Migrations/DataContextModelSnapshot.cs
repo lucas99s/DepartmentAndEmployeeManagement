@@ -16,9 +16,9 @@ namespace Management.API.Data.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "5.0.2");
 
-            modelBuilder.Entity("management.API.Models.Department", b =>
+            modelBuilder.Entity("management.API.Models.Departamento", b =>
                 {
-                    b.Property<int>("IdDepartamento")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
@@ -28,21 +28,18 @@ namespace Management.API.Data.Migrations
                     b.Property<string>("Sigla")
                         .HasColumnType("TEXT");
 
-                    b.HasKey("IdDepartamento");
+                    b.HasKey("Id");
 
                     b.ToTable("Departamentos");
                 });
 
-            modelBuilder.Entity("management.API.Models.Employee", b =>
+            modelBuilder.Entity("management.API.Models.Funcionario", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int?>("DepartmentIdDepartamento")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("IdDepartamento")
+                    b.Property<int?>("IdDepartamento")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("ImagemURL")
@@ -56,18 +53,18 @@ namespace Management.API.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("DepartmentIdDepartamento");
+                    b.HasIndex("IdDepartamento");
 
                     b.ToTable("Funcionarios");
                 });
 
-            modelBuilder.Entity("management.API.Models.Employee", b =>
+            modelBuilder.Entity("management.API.Models.Funcionario", b =>
                 {
-                    b.HasOne("management.API.Models.Department", "Department")
+                    b.HasOne("management.API.Models.Departamento", "Departamento")
                         .WithMany()
-                        .HasForeignKey("DepartmentIdDepartamento");
+                        .HasForeignKey("IdDepartamento");
 
-                    b.Navigation("Department");
+                    b.Navigation("Departamento");
                 });
 #pragma warning restore 612, 618
         }

@@ -20,13 +20,13 @@ namespace management.API.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<Employee> Get()
+        public IEnumerable<Funcionario> Get()
         {
             return _context.Funcionarios;
         }
 
         [HttpGet("{id}")]
-        public IEnumerable<Employee> GetId(int id)
+        public IEnumerable<Funcionario> GetId(int id)
         {
             return _context.Funcionarios.Where(employee => employee.Id == id);
         }

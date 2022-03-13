@@ -2,7 +2,7 @@
 
 namespace Management.API.Data.Migrations
 {
-    public partial class Initial : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -10,14 +10,14 @@ namespace Management.API.Data.Migrations
                 name: "Departamentos",
                 columns: table => new
                 {
-                    IdDepartamento = table.Column<int>(type: "INTEGER", nullable: false)
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     Nome = table.Column<string>(type: "TEXT", nullable: true),
                     Sigla = table.Column<string>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Departamentos", x => x.IdDepartamento);
+                    table.PrimaryKey("PK_Departamentos", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -29,24 +29,23 @@ namespace Management.API.Data.Migrations
                     Nome = table.Column<string>(type: "TEXT", nullable: true),
                     ImagemURL = table.Column<string>(type: "TEXT", nullable: true),
                     RG = table.Column<int>(type: "INTEGER", nullable: false),
-                    DepartmentIdDepartamento = table.Column<int>(type: "INTEGER", nullable: true),
-                    IdDepartamento = table.Column<int>(type: "INTEGER", nullable: false)
+                    IdDepartamento = table.Column<int>(type: "INTEGER", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Funcionarios", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Funcionarios_Departamentos_DepartmentIdDepartamento",
-                        column: x => x.DepartmentIdDepartamento,
+                        name: "FK_Funcionarios_Departamentos_IdDepartamento",
+                        column: x => x.IdDepartamento,
                         principalTable: "Departamentos",
-                        principalColumn: "IdDepartamento",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Funcionarios_DepartmentIdDepartamento",
+                name: "IX_Funcionarios_IdDepartamento",
                 table: "Funcionarios",
-                column: "DepartmentIdDepartamento");
+                column: "IdDepartamento");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
