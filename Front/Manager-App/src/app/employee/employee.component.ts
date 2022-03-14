@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EmployeeComponent implements OnInit {
 
-  public employees: any;
+  public employees: any = [];
 
   constructor(private http: HttpClient ) { }
 

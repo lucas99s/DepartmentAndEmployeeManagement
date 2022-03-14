@@ -8,7 +8,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DepartamentsComponent implements OnInit {
 
-  public departaments: any;
+  public departaments: any = [];
+  public departamentosFiltrados: any = []
+  private _filtroLista: string = '';
+
+  public get filtroLista(): string {
+    return this._filtroLista
+  }
+
+  public set filtroLista(value: string) {
+    this._filtroLista = value;
+    this.departamentosFiltrados = this.filtroLista ? this.filtrar(this.filtroLista) : this.departaments;
+  }
+
+  filtrar(filtrarPor: string): any {
+    filtrarPor = filtrarPor.toLocaleLowerCase();
+    return this.departaments.filter(
+      (departament: {nome: string; sigla: string;}) => departament.nome.toLocaleLowerCase().indexOf(filtrarPor) !== -1 || departament.sigla.toLocaleLowerCase().indexOf(filtrarPor) !== -1 || departament.sigla.toLocaleLowerCase().indexOf(filtrarPor) !== -1
+    )
+  }
 
   constructor(private http: HttpClient ) { }
 
@@ -18,7 +36,10 @@ export class DepartamentsComponent implements OnInit {
 
   public getDepartaments(): void {
     this.http.get('https://localhost:5001/api/Department').subscribe(
-      response => this.departaments = response,
+      response => {
+        this.departaments = response;
+        this.departamentosFiltrados = this.departaments;
+      },
       error => console.log(error)
     );
   }

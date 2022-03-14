@@ -1,5 +1,29 @@
-<div *ngFor="let departament of departaments">
-  <p><b>Departamento: </b>{{departament.nome}}</p>
-  <p><b>Sigla: </b>{{departament.sigla}}</p>
-  <hr>
+<div class="search">
+  <input type="text" placeholder="Buscar por departamento ou sigla" [(ngModel)]="filtroLista">
+  <button class="button-blue">Adicionar</button>
 </div>
+<table>
+  <tHead>
+    <tr>
+      <th class="text-center idColumn">#</th>
+      <th class="text-left departamentoColumn">Departamento</th>
+      <th class="text-left siglaColumn">Sigla</th>
+      <th class="text-center buttonColumn" colspan="2">Opções</th>
+      <th></th>
+    </tr>
+  </tHead>
+  <tBody *ngIf="departaments && departaments.length">
+    <tr *ngFor="let departament of departamentosFiltrados">
+      <td class="text-center">{{departament.id}}</td>
+      <td class="text-left">{{departament.nome}}</td>
+      <td class="text-left">{{departament.sigla}}</td>
+      <td class="text-right"><button class="edit button-green">Editar</button></td>
+      <td><button class="delete button-red">Remover</button></td>
+    </tr>
+  </tBody>
+  <tFoot *ngIf="!departaments.length">
+    <tr>
+      <td class="text-center" colspan="5"><h3>Nenhum departamento encontrado</h3></td>
+    </tr>
+  </tFoot>
+</table>
