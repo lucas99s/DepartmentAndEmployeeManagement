@@ -2,13 +2,13 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-departaments',
-  templateUrl: './departaments.component.html',
-  styleUrls: ['./departaments.component.css']
+  selector: 'app-departamentos',
+  templateUrl: './departamentos.component.html',
+  styleUrls: ['./departamentos.component.css']
 })
-export class DepartamentsComponent implements OnInit {
+export class DepartamentosComponent implements OnInit {
 
-  public departaments: any = [];
+  public departamentos: any = [];
   public departamentosFiltrados: any = []
   private _filtroLista: string = '';
 
@@ -18,27 +18,27 @@ export class DepartamentsComponent implements OnInit {
 
   public set filtroLista(value: string) {
     this._filtroLista = value;
-    this.departamentosFiltrados = this.filtroLista ? this.filtrar(this.filtroLista) : this.departaments;
+    this.departamentosFiltrados = this.filtroLista ? this.filtrar(this.filtroLista) : this.departamentos;
   }
 
   filtrar(filtrarPor: string): any {
     filtrarPor = filtrarPor.toLocaleLowerCase();
-    return this.departaments.filter(
-      (departament: {nome: string; sigla: string;}) => departament.nome.toLocaleLowerCase().indexOf(filtrarPor) !== -1 || departament.sigla.toLocaleLowerCase().indexOf(filtrarPor) !== -1 || departament.sigla.toLocaleLowerCase().indexOf(filtrarPor) !== -1
+    return this.departamentos.filter(
+      (departamento: {nome: string; sigla: string;}) => departamento.nome.toLocaleLowerCase().indexOf(filtrarPor) !== -1 || departamento.sigla.toLocaleLowerCase().indexOf(filtrarPor) !== -1 || departamento.sigla.toLocaleLowerCase().indexOf(filtrarPor) !== -1
     )
   }
 
   constructor(private http: HttpClient ) { }
 
   ngOnInit(): void {
-    this.getDepartaments();
+    this.getDepartamentos();
   }
 
-  public getDepartaments(): void {
+  public getDepartamentos(): void {
     this.http.get('https://localhost:5001/api/Department').subscribe(
       response => {
-        this.departaments = response;
-        this.departamentosFiltrados = this.departaments;
+        this.departamentos = response;
+        this.departamentosFiltrados = this.departamentos;
       },
       error => console.log(error)
     );

@@ -12,18 +12,19 @@
       <th></th>
     </tr>
   </tHead>
-  <tBody *ngIf="departaments && departaments.length">
-    <tr *ngFor="let departament of departamentosFiltrados">
-      <td class="text-center">{{departament.id}}</td>
-      <td class="text-left">{{departament.nome}}</td>
-      <td class="text-left">{{departament.sigla}}</td>
+  <tBody *ngIf="departamentos && departamentos.length">
+    <tr *ngFor="let departamento of departamentosFiltrados">
+      <td class="text-center">{{departamento.id}}</td>
+      <td class="text-left">{{departamento.nome}}</td>
+      <td class="text-left">{{departamento.sigla}}</td>
       <td class="text-right"><button class="edit button-green">Editar</button></td>
       <td><button class="delete button-red">Remover</button></td>
     </tr>
   </tBody>
-  <tFoot *ngIf="!departaments.length">
+  <tFoot *ngIf="!departamentos.length">
     <tr>
-      <td class="text-center" colspan="5"><h3>Nenhum departamento encontrado</h3></td>
+      <td class="text-center" colspan="5"><h3>Nenhum departamento encontrado.
+      </h3></td>
     </tr>
   </tFoot>
 </table>

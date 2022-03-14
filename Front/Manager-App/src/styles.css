@@ -40,12 +40,6 @@ hr {
   margin: 0 auto;
 }
 
-/* ---------Employee--------- */
-
-.profilePicture {
-  height: 50px;
-}
-
 /* ---------Start Search Bar and Add Button-------- */
 
 .search {
@@ -90,13 +84,8 @@ button {
 }
 
 button:hover {
-  height: 40px;
-  /* width: 110px; */
-  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.548);
-}
-tr button:hover::after {
-  content: '';
-  background-color: aqua;
+  height: 35;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.5);
 }
 
 .option-buttons {
@@ -107,31 +96,7 @@ tr button:hover::after {
 .button-green { background-color: var(--button-green); }
 .button-blue { background-color: var(--button-blue); }
 
-
 /* ---------End Buttons--------- */
-
-/* ---------Start Table--------- */
-
-table {
-  margin: 50px 0;
-  width: 100%;
-  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.109);
-}
-th {
-  font-size: 1.1rem;
-  background-color: var(--secondary-color);
-  color: var(--text-color-white);
-}
-th, td { height: 70px; }
-
-tHead tr th:nth-child(1) { width: 5%; }
-tHead tr th:nth-child(2) { width: 25%; }
-tHead tr th:nth-child(3) { width: 40%; }
-tHead tr th:nth-child(4) { width: 30%; }
-table tbody tr:nth-child(even){ background-color: #f2f2f2; }
-
-
-/* ---------End Table--------- */
 
 /* ---------Start Main Page--------- */
 
